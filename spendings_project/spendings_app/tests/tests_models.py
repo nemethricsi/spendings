@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Spending
+from spendings_app.models import Spending
 
 
 class ModelTests(TestCase):
