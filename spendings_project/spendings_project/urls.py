@@ -1,4 +1,4 @@
-"""spendings_project URL Configuration
+"""spendings_rest_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+# from spendings_app.views import SpendingViewSet
+# from rest_framework import routers
+
+# router = routers.DefaultRouter()
+# router.register(r'spendings', SpendingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('spendings_app.urls')),
 ]

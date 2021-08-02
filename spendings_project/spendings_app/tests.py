@@ -1,3 +1,16 @@
 from django.test import TestCase
+from .models import Spending
 
-# Create your tests here.
+
+class ModelTests(TestCase):
+
+    def test_spending_str(self):
+        """
+        Test if spending has the string representation
+        """
+        spending = Spending.objects.create(
+            description = 'apple',
+            amount = 10.00,
+        )
+
+        self.assertEqual(str(spending), spending.description)
