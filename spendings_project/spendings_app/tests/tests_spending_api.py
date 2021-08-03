@@ -112,8 +112,10 @@ class PublicSpendingsApiTest(TestCase):
         spending = sample_spending()
         url = detail_url(spending.id)
         res = self.client.delete(url)
-
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
+        res2 = self.client.get(url)
+        self.assertEqual(res2.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_filter_spendings_by_currency(self):
         """Test returning spendings with specific currency"""

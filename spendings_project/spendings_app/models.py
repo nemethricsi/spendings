@@ -7,6 +7,7 @@ class Spending(models.Model):
     class Currency(models.TextChoices):
         HUF = 'HUF', _('Hungarian Forint')
         USD = 'USD', _('American Dollar')
+        EUR = 'EUR', _('Euro')
 
     description = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
