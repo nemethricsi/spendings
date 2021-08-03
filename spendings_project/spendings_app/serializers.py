@@ -7,5 +7,11 @@ class SpendingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Spending
-        fields = ('id', 'date','description', 'amount', 'created', 'last_updated', 'currency')
+        fields = (
+            'id', 'date','description', 'amount', 'created', 'last_updated', 'currency'
+        )
         read_only_fields = ('id', 'created')
+
+
+class SpendingDetailSerializer(SpendingSerializer):
+    """Serialize a spending detail"""

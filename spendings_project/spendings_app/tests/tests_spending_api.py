@@ -3,9 +3,25 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 from ..models import Spending
-from ..serializers import SpendingSerializer
+from ..serializers import SpendingSerializer, SpendingDetailSerializer
 
 SPENDINGS_URL = reverse('spendings_app:spending-list')
+
+
+def sample_spending(**params):
+    """Create and return a sample spending"""
+    defaults = {
+        'description': 'Sample spending',
+        'amount': 12.55
+    }
+    defaults.update(params)
+    
+    return Spending.objects.create(**defaults)
+
+
+def detail_url(spending_id):
+    """Return Spending detail url"""
+    return reverse('spendings_app:spending-detail', args=[spending_id])
 
 
 class PublicSpendingsApiTest(TestCase):
@@ -22,8 +38,8 @@ class PublicSpendingsApiTest(TestCase):
 
     def test_retrieve_spendings(self):
         """Test retrieving spendings"""
-        Spending.objects.create(description='Banana', amount=10.34)
-        Spending.objects.create(description='Apple', amount=12)
+        sample_spending()
+        sample_spending()
 
         res = self.client.get(SPENDINGS_URL)
 
@@ -49,3 +65,33 @@ class PublicSpendingsApiTest(TestCase):
         res = self.client.post(SPENDINGS_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+    # def test_delete_spending(self):
+    #     """Test if we could delete a spending successfully"""
+    #     spending = Spending.objects.create(description='Banana', amount=10.34)
+
+    #     res = self.client.delete(SPENDINGS_URL)
+
+    #     self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
+    # def test_update_spending(self):
+    #     """Test update a spending"""
+    #     Spending.objects.create(description='Apple', amount=12)
+    #     payload = {'description': 'Apple', 'amount': 10}
+    #     res = self.client.put(SPENDINGS_URL, payload)
+        
+    #     spendings = Spending.objects.all().order_by('-description')
+    #     serializer = SpendingSerializer(spendings, many=True)
+
+    #     self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+    def test_view_spending_detail(self):
+        """Test if we can retrieve a single spending"""
+        spending = sample_spending()
+
+        url = detail_url(spending.id)
+        res = self.client.get(url)
+
+        serializer = SpendingDetailSerializer(spending)
+        self.assertEqual(res.data, serializer.data)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
