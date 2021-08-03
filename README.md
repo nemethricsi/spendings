@@ -38,15 +38,15 @@
 
 ### Spending
 
-| Method   | Endpoint                                                                               | Function                     | Status |
-| -------- | -------------------------------------------------------------------------------------- | ---------------------------- | ------ |
-| `POST`   | [`/api/spendings/`](#post-spendings)                                                   | Create a spending            | LIVE   |
-| `GET`    | [`/api/spendings/`](#get-spendings)                                                    | List all spendings           | LIVE   |
-| `GET`    | [`/api/spendings/{spending_id}/`](#get-spendingsspendingid)                            | Spending Detail view         | LIVE   |
-| `GET`    | [`/api/spendings?currency={ISO_currency_code}`](#get-spendingscurrencyisocurrencycode) | Filter spendings by currency | LIVE   |
-| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-spendingsspendingid)                          | Partially update spending    | LIVE   |
-| `PUT`    | [`/api/spendings/{spending_id}/`](#put-spendingsspendingid)                            | Fully update spending        | LIVE   |
-| `DELETE` | [`/api/spendings/{spending_id}/`](#delete-spendingsspendingid)                         | Delete a spending            | LIVE   |
+| Method   | Endpoint                                                                                 | Function                     | Status |
+| -------- | ---------------------------------------------------------------------------------------- | ---------------------------- | ------ |
+| `POST`   | [`/api/spendings/`](#post-spendings)                                                     | Create a spending            | LIVE   |
+| `GET`    | [`/api/spendings/`](#get-spendings)                                                      | List all spendings           | LIVE   |
+| `GET`    | [`/api/spendings/{spending_id}/`](#get-spendingsspending_id)                             | Spending Detail view         | LIVE   |
+| `GET`    | [`/api/spendings?currency={ISO_currency_code}`](#get-spendingscurrencyiso_currency_code) | Filter spendings by currency | LIVE   |
+| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-spendingsspending_id)                           | Partially update spending    | LIVE   |
+| `PUT`    | [`/api/spendings/{spending_id}/`](#put-spendingsspending_id)                             | Fully update spending        | LIVE   |
+| `DELETE` | [`/api/spendings/{spending_id}/`](#delete-spendingsspending_id)                          | Delete a spending            | LIVE   |
 
 ### `POST /spendings`
 
