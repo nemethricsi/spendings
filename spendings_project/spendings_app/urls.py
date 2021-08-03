@@ -10,8 +10,3 @@ app_name = 'spendings_app'
 urlpatterns = [
     path('', include(router.urls))
 ]
-
-# urlpatterns = [
-#     path('spendings/', views.spending_list),
-#     path('spendings/<int:pk>/', views.spending_detail),
-# ]

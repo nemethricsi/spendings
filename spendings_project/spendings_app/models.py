@@ -10,14 +10,14 @@ class Spending(models.Model):
         EUR = 'EUR', _('Euro')
 
     description = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True)
-    date = models.DateTimeField(default=timezone.now, blank=True)
     amount = models.FloatField()
+    date = models.DateTimeField(default=timezone.now, blank=True)
     currency = models.CharField(
         max_length=3,
         choices=Currency.choices
     )
+    created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['amount',]

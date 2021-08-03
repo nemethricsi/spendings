@@ -7,22 +7,21 @@ from ..serializers import SpendingSerializer, SpendingDetailSerializer
 
 SPENDINGS_URL = reverse('spendings_app:spending-list')
 
+def detail_url(spending_id):
+    """Return Spending detail url"""
+    return reverse('spendings_app:spending-detail', args=[spending_id])
+
 
 def sample_spending(**params):
     """Create and return a sample spending"""
     defaults = {
         'description': 'Sample spending',
-        'amount': 12.55,
-        'currency': 'USD'
+        'amount': 1200.55,
+        'currency': 'HUF'
     }
     defaults.update(params)
     
     return Spending.objects.create(**defaults)
-
-
-def detail_url(spending_id):
-    """Return Spending detail url"""
-    return reverse('spendings_app:spending-detail', args=[spending_id])
 
 
 class PublicSpendingsApiTest(TestCase):
@@ -39,8 +38,8 @@ class PublicSpendingsApiTest(TestCase):
 
     def test_retrieve_spendings(self):
         """Test retrieving spendings"""
-        sample_spending()
-        sample_spending()
+        sample_spending(description='Papaya')
+        sample_spending(description='Banana')
 
         res = self.client.get(SPENDINGS_URL)
 
@@ -81,9 +80,10 @@ class PublicSpendingsApiTest(TestCase):
     def test_update_partial_spending(self):
         """Test updating a spending with PATCH"""
         spending = sample_spending()
+        new_description = 'Updated spending'
         new_currency = 'USD'
 
-        payload = {'description':'Updated spending', 'currency': new_currency}
+        payload = {'description': new_description, 'currency': new_currency}
         url = detail_url(spending.id)
         self.client.patch(url, payload)
 
@@ -119,16 +119,19 @@ class PublicSpendingsApiTest(TestCase):
 
     def test_filter_spendings_by_currency(self):
         """Test returning spendings with specific currency"""
-        spending1 = sample_spending(currency='HUF')
-        spending2 = sample_spending(currency='USD')
+        spending_usd = sample_spending(currency='USD')
+        spending_huf = sample_spending(currency='HUF')
+        spending_eur = sample_spending(currency='EUR')
 
         res = self.client.get(
             SPENDINGS_URL,
             {'currency': 'USD'}
         )
 
-        serializer1 = SpendingSerializer(spending1)
-        serializer2 = SpendingSerializer(spending2)
+        serializer_usd = SpendingSerializer(spending_usd)
+        serializer_huf = SpendingSerializer(spending_huf)
+        serializer_eur = SpendingSerializer(spending_eur)
 
-        self.assertNotIn(serializer1.data, res.data)
-        self.assertIn(serializer2.data, res.data)
+        self.assertIn(serializer_usd.data, res.data)
+        self.assertNotIn(serializer_huf.data, res.data)
+        self.assertNotIn(serializer_eur.data, res.data)
