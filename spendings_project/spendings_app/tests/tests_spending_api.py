@@ -66,25 +66,6 @@ class PublicSpendingsApiTest(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    # def test_delete_spending(self):
-    #     """Test if we could delete a spending successfully"""
-    #     spending = Spending.objects.create(description='Banana', amount=10.34)
-
-    #     res = self.client.delete(SPENDINGS_URL)
-
-    #     self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
-
-    # def test_update_spending(self):
-    #     """Test update a spending"""
-    #     Spending.objects.create(description='Apple', amount=12)
-    #     payload = {'description': 'Apple', 'amount': 10}
-    #     res = self.client.put(SPENDINGS_URL, payload)
-        
-    #     spendings = Spending.objects.all().order_by('-description')
-    #     serializer = SpendingSerializer(spendings, many=True)
-
-    #     self.assertEqual(res.status_code, status.HTTP_200_OK)
-
     def test_view_spending_detail(self):
         """Test if we can retrieve a single spending"""
         spending = sample_spending()
@@ -124,3 +105,11 @@ class PublicSpendingsApiTest(TestCase):
         self.assertEqual(spending.description, payload['description'])
         self.assertEqual(spending.amount, payload['amount'])
         self.assertEqual(spending.currency, payload['currency'])
+
+    def test_delete_spending(self):
+        """Test deletion of a spending"""
+        spending = sample_spending()
+        url = detail_url(spending.id)
+        res = self.client.delete(url)
+
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)

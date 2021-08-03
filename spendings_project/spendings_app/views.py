@@ -29,13 +29,13 @@ class SpendingViewSet(viewsets.GenericViewSet,
     def get_queryset(self):
         return self.queryset.all().order_by('-amount')
 
-    def perform_create(self, serializer):
-        """Create a new spending"""
-        serializer.save()
+    # def perform_create(self, serializer):
+    #     """Create a new spending"""
+    #     serializer.save()
 
-    def perform_destroy(self, instance):
-        """Delete a spending"""
-        instance.delete()
+    # def perform_destroy(self, instance):
+    #     """Delete a spending"""
+    #     instance.delete()
 
     def get_serializer_class(self):
         """Return appropriate serializer class"""
