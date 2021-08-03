@@ -27,7 +27,12 @@ class SpendingViewSet(viewsets.GenericViewSet,
     serializer_class = SpendingSerializer
 
     def get_queryset(self):
-        return self.queryset.all().order_by('-amount')
+        currency_filter = self.request.query_params.get('currency')
+        queryset = self.queryset
+        if currency_filter:
+            queryset = queryset.filter(currency=currency_filter)
+
+        return queryset.all().order_by('amount')
 
     # def perform_create(self, serializer):
     #     """Create a new spending"""

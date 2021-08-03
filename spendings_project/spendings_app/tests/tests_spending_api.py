@@ -12,7 +12,8 @@ def sample_spending(**params):
     """Create and return a sample spending"""
     defaults = {
         'description': 'Sample spending',
-        'amount': 12.55
+        'amount': 12.55,
+        'currency': 'USD'
     }
     defaults.update(params)
     
@@ -51,7 +52,7 @@ class PublicSpendingsApiTest(TestCase):
 
     def test_create_spending_successful(self):
         """Test creating a new spending"""
-        payload = {'description': 'Apple', 'amount': 5}
+        payload = {'description': 'Apple', 'amount': 5, 'currency': 'USD'}
         self.client.post(SPENDINGS_URL, payload)
 
         exists = Spending.objects.filter(
@@ -113,3 +114,19 @@ class PublicSpendingsApiTest(TestCase):
         res = self.client.delete(url)
 
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_filter_spendings_by_currency(self):
+        """Test returning spendings with specific currency"""
+        spending1 = sample_spending(currency='HUF')
+        spending2 = sample_spending(currency='USD')
+
+        res = self.client.get(
+            SPENDINGS_URL,
+            {'currency': 'USD'}
+        )
+
+        serializer1 = SpendingSerializer(spending1)
+        serializer2 = SpendingSerializer(spending2)
+
+        self.assertNotIn(serializer1.data, res.data)
+        self.assertIn(serializer2.data, res.data)

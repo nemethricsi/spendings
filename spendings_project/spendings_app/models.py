@@ -15,8 +15,7 @@ class Spending(models.Model):
     amount = models.FloatField()
     currency = models.CharField(
         max_length=3,
-        choices=Currency.choices,
-        default=Currency.HUF,
+        choices=Currency.choices
     )
 
     class Meta:
