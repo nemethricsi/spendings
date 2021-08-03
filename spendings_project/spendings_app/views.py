@@ -18,7 +18,8 @@ class SpendingViewSet(viewsets.GenericViewSet,
         currency_filter = self.request.query_params.get('currency')
         queryset = self.queryset
         if currency_filter:
-            queryset = queryset.filter(currency=currency_filter)
+            currency_upper = currency_filter.upper()
+            queryset = queryset.filter(currency=currency_upper)
 
         return queryset.all().order_by('amount')
 
