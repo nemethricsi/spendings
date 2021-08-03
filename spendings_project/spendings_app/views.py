@@ -19,6 +19,7 @@ from rest_framework.response import Response
 class SpendingViewSet(viewsets.GenericViewSet, 
                       mixins.ListModelMixin,
                       mixins.RetrieveModelMixin,
+                      mixins.UpdateModelMixin,
                       mixins.CreateModelMixin,
                       mixins.DestroyModelMixin):
     """Manage Spendings in the database"""
@@ -42,7 +43,7 @@ class SpendingViewSet(viewsets.GenericViewSet,
             return SpendingDetailSerializer
         
         return self.serializer_class
-        
+
 
 # class SpendingViewSet(viewsets.ModelViewSet):
 #     authentication_classes = (BasicAuthentication,)
