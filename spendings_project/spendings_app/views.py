@@ -1,7 +1,6 @@
 from .models import Spending
 from .serializers import SpendingSerializer, SpendingDetailSerializer
-from rest_framework import viewsets, mixins
-from rest_framework import status
+from rest_framework import viewsets, mixins, status, filters
 from rest_framework.response import Response
 
 class SpendingViewSet(viewsets.GenericViewSet, 
@@ -13,6 +12,7 @@ class SpendingViewSet(viewsets.GenericViewSet,
     """Manage Spendings in the database"""
     queryset = Spending.objects.all()
     serializer_class = SpendingSerializer
+    filter_backends = [filters.OrderingFilter]
 
     def get_queryset(self):
         currency_filter = self.request.query_params.get('currency')
