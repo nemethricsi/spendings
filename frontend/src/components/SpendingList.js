@@ -143,12 +143,13 @@ export default function SpendingList({
   toggleRefresh,
   spendings,
   setSpendings,
+  currencyFilter,
 }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch(url, {
+    fetch(`${url}?currency=${currencyFilter}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -169,7 +170,7 @@ export default function SpendingList({
         console.error(err);
         setLoading(false);
       });
-  }, [refresh]);
+  }, [refresh, currencyFilter]);
 
   function handleDelete(spendingId) {
     fetch(`${url}${spendingId}/`, {
