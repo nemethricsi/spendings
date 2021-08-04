@@ -7,10 +7,9 @@ class Spending(models.Model):
     class Currency(models.TextChoices):
         HUF = 'HUF', _('Hungarian Forint')
         USD = 'USD', _('American Dollar')
-        EUR = 'EUR', _('Euro')
 
     description = models.CharField(max_length=255)
-    amount = models.FloatField()
+    amount = models.IntegerField()
     date = models.DateTimeField(default=timezone.now, blank=True)
     currency = models.CharField(
         max_length=3,
@@ -20,7 +19,7 @@ class Spending(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['amount',]
+        ordering = ['-date',]
 
     def __str__(self):
         if self is None:

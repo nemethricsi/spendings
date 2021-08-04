@@ -21,7 +21,7 @@ class SpendingViewSet(viewsets.GenericViewSet,
             currency_upper = currency_filter.upper()
             queryset = queryset.filter(currency=currency_upper)
 
-        return queryset.all().order_by('amount')
+        return queryset.all().order_by('-date')
 
     def get_serializer_class(self):
         """Return appropriate serializer class"""

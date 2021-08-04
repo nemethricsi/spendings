@@ -8,7 +8,7 @@ class ModelTests(TestCase):
         """Test if spending has the string representation"""
         spending = Spending.objects.create(
             description = 'apple',
-            amount = 10.00,
+            amount = 1000,
         )
 
         self.assertEqual(str(spending), spending.description)
