@@ -35,6 +35,10 @@ const Spending = styled.article`
   p {
     color: #adadad;
   }
+  @media (max-width: 756px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -43,6 +47,36 @@ const IconWrapper = styled.div`
   background-color: #d1e7fb;
   border-radius: 12px;
   margin-right: 1.5rem;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (max-width: 756px) {
+    margin: 0;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+`;
+
+const TextWrapper = styled.div`
+  @media (max-width: 756px) {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+`;
+
+const AmountWrapper = styled.div`
+  margin-left: auto;
+  margin-right: 1rem;
+
+  @media (max-width: 756px) {
+    margin: 0.5rem 0;
+  }
 `;
 
 const Amount = styled.h3`
@@ -172,21 +206,21 @@ export default function SpendingList({
           spendings.map((spending) => (
             <Spending key={spending.id}>
               <IconWrapper>
-                <FiDollarSign color='var(--color-blue)' size={28} />
+                <FiDollarSign color='var(--color-blue)' />
               </IconWrapper>
-              <div>
+              <TextWrapper>
                 <h3>{spending.description}</h3>
                 <p>
                   {DateTime.fromISO(spending.date).toFormat(
                     't - MMMM dd, yyyy'
                   )}
                 </p>
-              </div>
-              <div style={{ marginLeft: 'auto', marginRight: '1rem' }}>
+              </TextWrapper>
+              <AmountWrapper>
                 <Amount currency={spending.currency}>
-                  {Number(parseFloat(spending.amount).toFixed(2))}
+                  {Number.parseFloat(spending.amount).toFixed(2)}
                 </Amount>
-              </div>
+              </AmountWrapper>
               <ActionsWrapper>
                 <EditWrapper role='button' tabIndex={0}>
                   <BiEditAlt size={18} />

@@ -74,7 +74,7 @@ const SelectStyles = styled.select`
 export default function Form({ setSpendings, spendings, toggleRefresh }) {
   const [state, setState] = useState({
     description: '',
-    amount: null,
+    amount: 0,
     currency: 'USD',
   });
 

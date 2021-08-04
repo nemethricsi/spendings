@@ -24,9 +24,8 @@ const HeaderStyles = styled.header`
   li:hover {
     border-bottom: 2px solid;
   }
-
-  nav {
-    margin-left: auto;
+  @media (max-width: 756px) {
+    margin-bottom: 2rem;
   }
 `;
 
@@ -35,6 +34,20 @@ const FlexWrapper = styled.div`
   margin: 1rem auto;
   display: flex;
   align-items: center;
+
+  @media (max-width: 756px) {
+    justify-content: center;
+  }
+`;
+
+const LogoStyles = styled.div``;
+
+const NavStyles = styled.nav`
+  margin-left: auto;
+
+  @media (max-width: 756px) {
+    display: none;
+  }
 `;
 
 export default function Header() {
@@ -42,10 +55,10 @@ export default function Header() {
     <>
       <HeaderStyles>
         <FlexWrapper>
-          <div>
+          <LogoStyles>
             <h1>Spendingz</h1>
-          </div>
-          <nav>
+          </LogoStyles>
+          <NavStyles>
             <ul>
               <li>
                 <a href='#0'>About</a>
@@ -57,7 +70,7 @@ export default function Header() {
                 <a href='#0'>My spendings</a>
               </li>
             </ul>
-          </nav>
+          </NavStyles>
         </FlexWrapper>
       </HeaderStyles>
     </>
