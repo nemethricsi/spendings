@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import styled from 'styled-components';
 import config from '../config';
 import { InputStyles } from '../styles/InputStyles';
@@ -57,7 +57,11 @@ export default function Form({ setSpendings, spendings, toggleRefresh }) {
             currency: 'USD',
           });
         } else {
-          toast.error(JSON.stringify(response.body, null, 2));
+          toast.error(JSON.stringify(response.body, null, 2), {
+            position: 'top-center',
+            autoClose: 2000,
+            transition: Slide,
+          });
         }
       })
       .catch((err) => {

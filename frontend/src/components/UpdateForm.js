@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { InputStyles } from '../styles/InputStyles';
 import { SelectStyles } from '../styles/SelectStyles';
@@ -53,7 +53,11 @@ export default function UpdateForm({ spending }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          toast.success('Update successful!');
+          toast.success('Update successful!', {
+            position: 'top-center',
+            autoClose: 2000,
+            transition: Slide,
+          });
           history.push('/');
         }
       });
