@@ -76,7 +76,7 @@ export default function CurrencyFilter({
       <FiltersWrapper>
         <Orderings onChange={(e) => setOrdering(e.target.value)}>
           <select>
-            <option value='-date'>Sort by Date descending</option>
+            <option value='-date'>Sort by Date descending (default)</option>
             <option value='date'>Sort by Date ascending</option>
             <option value='-amount'>Sort by Amount descending</option>
             <option value='amount'>Sort by Amount ascending</option>

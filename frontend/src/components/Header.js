@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SiDjango, SiGithub } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 
 const HeaderStyles = styled.header`
   margin-bottom: 4rem;
@@ -93,7 +94,9 @@ export default function Header() {
       <HeaderStyles>
         <FlexWrapper>
           <LogoStyles>
-            <h1>Spendingz</h1>
+            <Link to='/'>
+              <h1>Spendingz</h1>
+            </Link>
           </LogoStyles>
           <NavStyles>
             <ul>

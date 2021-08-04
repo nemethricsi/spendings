@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FiCoffee, FiShoppingBag, FiDollarSign } from 'react-icons/fi';
-import { FaTimes, FaEdit } from 'react-icons/fa';
+import { FiDollarSign } from 'react-icons/fi';
+import { FaTimes } from 'react-icons/fa';
 import { BiEditAlt } from 'react-icons/bi';
 import { DateTime } from 'luxon';
 import { toast, Slide } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import Loader from './Loader';
 import config from '../config';
 
@@ -248,9 +249,11 @@ export default function SpendingList({
                 </Amount>
               </AmountWrapper>
               <ActionsWrapper>
-                <EditWrapper role='button' tabIndex={0}>
-                  <BiEditAlt size={18} />
-                </EditWrapper>
+                <Link to={`/update/${spending.id}`}>
+                  <EditWrapper role='button' tabIndex={0}>
+                    <BiEditAlt size={18} />
+                  </EditWrapper>
+                </Link>
                 <TimesWrapper
                   role='button'
                   tabIndex={0}
