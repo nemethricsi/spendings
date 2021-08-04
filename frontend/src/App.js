@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Form from './components/Form';
 import FiltersAndOrderings from './components/FiltersAndOrderings';
 import SpendingList from './components/SpendingList';
+import Layout from './components/Layout';
 
 export const MainContainer = styled.main`
   max-width: 800px;
@@ -22,28 +23,29 @@ export default function App() {
 
   return (
     <>
-      <Header />
-      <MainContainer>
-        <Form
-          setSpendings={setSpendings}
-          spendings={spendings}
-          toggleRefresh={toggleRefresh}
-        />
-        <FiltersAndOrderings
-          currencyFilter={currencyFilter}
-          setCurrencyFilter={setCurrencyFilter}
-          ordering={ordering}
-          setOrdering={setOrdering}
-        />
-        <SpendingList
-          spendings={spendings}
-          setSpendings={setSpendings}
-          toggleRefresh={toggleRefresh}
-          refresh={refresh}
-          currencyFilter={currencyFilter}
-          ordering={ordering}
-        />
-      </MainContainer>
+      <Layout>
+        <MainContainer>
+          <Form
+            setSpendings={setSpendings}
+            spendings={spendings}
+            toggleRefresh={toggleRefresh}
+          />
+          <FiltersAndOrderings
+            currencyFilter={currencyFilter}
+            setCurrencyFilter={setCurrencyFilter}
+            ordering={ordering}
+            setOrdering={setOrdering}
+          />
+          <SpendingList
+            spendings={spendings}
+            setSpendings={setSpendings}
+            toggleRefresh={toggleRefresh}
+            refresh={refresh}
+            currencyFilter={currencyFilter}
+            ordering={ordering}
+          />
+        </MainContainer>
+      </Layout>
     </>
   );
 }
