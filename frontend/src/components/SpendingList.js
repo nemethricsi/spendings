@@ -6,8 +6,7 @@ import { BiEditAlt } from 'react-icons/bi';
 import { DateTime } from 'luxon';
 import { toast, Slide } from 'react-toastify';
 import Loader from './Loader';
-
-const url = 'https://spendings-django.herokuapp.com/api/spendings/';
+import config from '../config';
 
 const SpendingListStyles = styled.div`
   // border: 1px solid rebeccapurple;
@@ -145,11 +144,10 @@ export default function SpendingList({
   setSpendings,
   currencyFilter,
 }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`${url}?currency=${currencyFilter}`, {
+    fetch(`${config.API_URL}?currency=${currencyFilter}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -173,7 +171,7 @@ export default function SpendingList({
   }, [refresh, currencyFilter]);
 
   function handleDelete(spendingId) {
-    fetch(`${url}${spendingId}/`, {
+    fetch(`${config.API_URL}${spendingId}/`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     }).then((res) => {
@@ -202,7 +200,15 @@ export default function SpendingList({
   return (
     <>
       <SpendingListStyles>
-        {!spendings.length && <h1>No spendings!</h1>}
+        {!spendings.length && (
+          <h1 style={{ textAlign: 'center', marginTop: '4rem' }}>
+            Yay!{' '}
+            <span role='img' aria-label='jsx-a11y/accessible-emoji'>
+              🎉
+            </span>{' '}
+            No spendings!
+          </h1>
+        )}
         {spendings.length > 0 &&
           spendings.map((spending) => (
             <Spending key={spending.id}>

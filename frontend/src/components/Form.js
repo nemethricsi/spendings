@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-
-const url = 'https://spendings-django.herokuapp.com/api/spendings/';
+import config from '../config';
 
 const FormStyles = styled.form`
   display: flex;
@@ -89,7 +88,7 @@ export default function Form({ setSpendings, spendings, toggleRefresh }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(url, {
+    fetch(config.API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(state),
