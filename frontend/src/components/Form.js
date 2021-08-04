@@ -51,7 +51,6 @@ const InputStyles = styled.input`
 `;
 
 const SelectStyles = styled.select`
-  /* A reset of styles, including removing the default dropdown arrow */
   appearance: none;
   border: none;
   margin: 0;
@@ -106,7 +105,9 @@ export default function Form({ setSpendings, spendings, toggleRefresh }) {
       .then((response) => {
         console.log(response);
         if (response.status === 201) {
-          toggleRefresh();
+          // toggleRefresh();
+          const newItem = response.body;
+          setSpendings([newItem, ...spendings]);
           setState({
             description: '',
             amount: 0,

@@ -154,12 +154,13 @@ export default function SpendingList({
   spendings,
   setSpendings,
   currencyFilter,
+  ordering,
 }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`${config.API_URL}?currency=${currencyFilter}`, {
+    fetch(`${config.API_URL}?currency=${currencyFilter}&ordering=${ordering}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -181,7 +182,7 @@ export default function SpendingList({
         setError(true);
         setLoading(false);
       });
-  }, [refresh, currencyFilter]);
+  }, [refresh, currencyFilter, ordering]);
 
   function handleDelete(spendingId) {
     fetch(`${config.API_URL}${spendingId}/`, {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Form from './components/Form';
-import CurrencyFilter from './components/CurrencyFilter';
+import FiltersAndOrderings from './components/FiltersAndOrderings';
 import SpendingList from './components/SpendingList';
 
 export const MainContainer = styled.main`
@@ -14,6 +14,7 @@ export default function App() {
   const [refresh, setRefresh] = useState(false);
   const [spendings, setSpendings] = useState([]);
   const [currencyFilter, setCurrencyFilter] = useState('');
+  const [ordering, setOrdering] = useState('');
 
   function toggleRefresh() {
     setRefresh(!refresh);
@@ -28,9 +29,11 @@ export default function App() {
           spendings={spendings}
           toggleRefresh={toggleRefresh}
         />
-        <CurrencyFilter
+        <FiltersAndOrderings
           currencyFilter={currencyFilter}
           setCurrencyFilter={setCurrencyFilter}
+          ordering={ordering}
+          setOrdering={setOrdering}
         />
         <SpendingList
           spendings={spendings}
@@ -38,6 +41,7 @@ export default function App() {
           toggleRefresh={toggleRefresh}
           refresh={refresh}
           currencyFilter={currencyFilter}
+          ordering={ordering}
         />
       </MainContainer>
     </>

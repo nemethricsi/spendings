@@ -65,6 +65,7 @@ const FlexWrapper = styled.div`
 
   @media (max-width: 756px) {
     justify-content: center;
+    flex-direction: column;
   }
 `;
 
@@ -74,7 +75,15 @@ const NavStyles = styled.nav`
   margin-left: auto;
 
   @media (max-width: 756px) {
-    display: none;
+    margin-left: unset;
+
+    ul {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
   }
 `;
 
@@ -105,7 +114,7 @@ export default function Header() {
               >
                 <li>
                   <SiDjango />
-                  REST Api
+                  RESTful Api
                 </li>
               </a>
             </ul>
