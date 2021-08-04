@@ -19,8 +19,6 @@ export default function App() {
     setRefresh(!refresh);
   }
 
-  console.log({ currencyFilter });
-
   return (
     <>
       <Header />
