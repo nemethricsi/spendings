@@ -137,6 +137,17 @@ const EditWrapper = styled.div`
   }
 `;
 
+const ErrorMessage = styled.h1`
+  text-align: center;
+  margin: 4rem auto;
+  font-size: 20px;
+  background-color: #fb7c7d;
+  color: var(--color-white);
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 80%;
+`;
+
 export default function SpendingList({
   refresh,
   toggleRefresh,
@@ -145,6 +156,7 @@ export default function SpendingList({
   currencyFilter,
 }) {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch(`${config.API_URL}?currency=${currencyFilter}`, {
@@ -166,6 +178,7 @@ export default function SpendingList({
       })
       .catch((err) => {
         console.error(err);
+        setError(true);
         setLoading(false);
       });
   }, [refresh, currencyFilter]);
@@ -200,7 +213,12 @@ export default function SpendingList({
   return (
     <>
       <SpendingListStyles>
-        {!spendings.length && (
+        {error && (
+          <ErrorMessage>
+            The server is probably down. Please try again later.
+          </ErrorMessage>
+        )}
+        {!spendings.length && !error && (
           <h1 style={{ textAlign: 'center', marginTop: '4rem' }}>
             Yay!{' '}
             <span role='img' aria-label='jsx-a11y/accessible-emoji'>
