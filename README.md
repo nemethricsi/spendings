@@ -15,10 +15,10 @@
 ```json
 {
   "id": IntegerField,
-  "description": CharField, Required!
-  "amount": FloatField,     Required!
-  "date": DateTimeField,    Optional. (default: current timestamp),
-  "currency": CharField,    Required!
+  "description": CharField, # Required!
+  "amount": FloatField,     # Required!
+  "date": DateTimeField,    # Optional. (default: current timestamp),
+  "currency": CharField,    # Required!
   "created": DateTimeField,
   "last_updated": DateTimeField
 }
