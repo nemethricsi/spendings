@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--color-background);
     color: var(--color-black);
     font-family: var(--font-family);
+
+    @media(max-width: 768px){
+      padding: 0 1rem;
+    }
   }
 `;
 

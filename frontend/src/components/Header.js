@@ -64,10 +64,13 @@ export default function Header() {
                 <a href='#0'>About</a>
               </li>
               <li>
-                <a href='#0'>Pricing</a>
-              </li>
-              <li>
-                <a href='#0'>My spendings</a>
+                <a
+                  href='https://spendings-django.herokuapp.com/api'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  REST Api Admin
+                </a>
               </li>
             </ul>
           </NavStyles>
