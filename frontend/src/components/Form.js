@@ -91,7 +91,10 @@ export default function Form({ setSpendings, spendings, toggleRefresh }) {
     fetch(config.API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state),
+      body: JSON.stringify({
+        ...state,
+        amount: Number.parseFloat(state.amount).toFixed(2) * 100,
+      }),
     })
       .then(async (res) => {
         const body = await res.json();

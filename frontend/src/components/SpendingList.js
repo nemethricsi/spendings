@@ -225,7 +225,7 @@ export default function SpendingList({
               </TextWrapper>
               <AmountWrapper>
                 <Amount currency={spending.currency}>
-                  {Number.parseFloat(spending.amount).toFixed(2)}
+                  {(spending.amount / 100).toFixed(2)}
                 </Amount>
               </AmountWrapper>
               <ActionsWrapper>
