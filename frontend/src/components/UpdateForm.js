@@ -20,7 +20,7 @@ export default function UpdateForm({ spending }) {
   const history = useHistory();
   const [state, setState] = useState({
     description: spending.description,
-    amount: spending.amount,
+    amount: spending.amount / 100,
     currency: spending.currency,
   });
 
@@ -36,7 +36,7 @@ export default function UpdateForm({ spending }) {
     e.preventDefault();
     const body = {
       description: state.description,
-      amount: state.amount,
+      amount: state.amount * 100,
       currency: state.currency,
     };
     fetch(`${config.API_URL}${spending.id}/`, {
@@ -63,6 +63,8 @@ export default function UpdateForm({ spending }) {
       });
   }
 
+  console.log(state.amount);
+
   return (
     <>
       <Wrapper>
@@ -77,9 +79,9 @@ export default function UpdateForm({ spending }) {
           <InputStyles
             type='number'
             name='amount'
-            value={Number.parseFloat(state.amount / 100)}
+            value={state.amount}
             onChange={handleChange}
-            disabled
+            step='.01'
           />
           <SelectStyles
             name='currency'
