@@ -45,20 +45,20 @@
 | `GET`    | [`/api/spendings/`](#get-spendings)                                                      | List all spendings           | LIVE   |
 | `GET`    | [`/api/spendings/{spending_id}/`](#get-spendingsspending_id)                             | Spending Detail view         | LIVE   |
 | `GET`    | [`/api/spendings?currency={ISO_currency_code}`](#get-spendingscurrencyiso_currency_code) | Filter spendings by currency | LIVE   |
-| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-spendingsspending_id)                           | Partially update spending    | LIVE   |
+| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-spendingsspending_id)                           | Partially update spending    | DEV    |
 | `PUT`    | [`/api/spendings/{spending_id}/`](#put-spendingsspending_id)                             | Fully update spending        | LIVE   |
 | `DELETE` | [`/api/spendings/{spending_id}/`](#delete-spendingsspending_id)                          | Delete a spending            | LIVE   |
 
-### `POST /spendings`
+### `POST /api/spendings`
 
 Request
 
 ```json
 {
-  "description": "Mango",                   Required!
-  "amount": 12.0,                           Required!
-  "date": "2021-06-02T22:31:32.843408Z",    Optional. (default: current timestamp),
-  "currency": "USD",                        Required!
+  "description": "Mango                   Required!",
+  "amount": "12.0                         Required!",
+  "date": "2021-06-02T22:31:32.843408Z    Optional. (default: current timestamp)",
+  "currency": "USD                        Required!"
 }
 ```
 
@@ -88,7 +88,7 @@ Response when required field is missing
 }
 ```
 
-### `GET /spendings`
+### `GET /api/spendings`
 
 Response
 
@@ -100,7 +100,7 @@ Response
 ]
 ```
 
-### `GET /spendings/{spending_id}`
+### `GET /api/spendings/{spending_id}`
 
 Request
 
@@ -124,7 +124,7 @@ Response when spending does not exists
 }
 ```
 
-### `GET /spendings/?currency={ISO_currency_code}`
+### `GET /api/spendings/?currency={ISO_currency_code}`
 
 Request
 
@@ -136,19 +136,19 @@ Response
 
 ```json
 [
-    {
-        "id": 6,
-        "description": "Mango",
-        "amount": 12.0,
-        "date": "2021-08-02T22:31:32.843408Z",
-        "currency": ISO_currency_code,
-        "created": "2021-08-02T22:31:33.033740Z",
-        "last_updated": "2021-08-02T22:31:33.033771Z"
-    }
+  {
+    "id": 6,
+    "description": "Mango",
+    "amount": 12.0,
+    "date": "2021-08-02T22:31:32.843408Z",
+    "currency": "ISO_currency_code",
+    "created": "2021-08-02T22:31:33.033740Z",
+    "last_updated": "2021-08-02T22:31:33.033771Z"
+  }
 ]
 ```
 
-### `PATCH /spendings/{spending_id}/`
+### `PATCH /api/spendings/{spending_id}/`
 
 Request
 
@@ -178,7 +178,7 @@ Response
 ]
 ```
 
-### `PUT /spendings/{spending_id}/`
+### `PUT /api/spendings/{spending_id}/`
 
 Request
 
@@ -210,7 +210,7 @@ Response
 ]
 ```
 
-### `DELETE /spendings/{spending_id}`
+### `DELETE /api/spendings/{spending_id}`
 
 Path variables: **`spending_id`** (required)
 
