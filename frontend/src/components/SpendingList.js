@@ -161,6 +161,7 @@ export default function SpendingList({
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${config.API_URL}?currency=${currencyFilter}&ordering=${ordering}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
