@@ -136,3 +136,25 @@ class PublicSpendingsApiTest(TestCase):
         self.assertIn(serializer_usd.data, res.data)
         self.assertNotIn(serializer_huf.data, res.data)
         self.assertNotIn(serializer_eur.data, res.data)
+
+    def test_ordering_by_amount_descending(self):
+        """Test if ordering by amount is working"""
+        # 10 0000 HUF
+        highest_spending = sample_spending(amount=1000000, currency='HUF')
+        # 5 660 HUF
+        higher_spending = sample_spending(amount=566000, currency='HUF')
+        # 10 USD ~2 990 HUF
+        small_spending = sample_spending(amount=1000, currency='USD')
+
+        res = self.client.get(
+            SPENDINGS_URL,
+            {'ordering': '-amount_in_huf'}
+        )
+
+        serializer_small = SpendingSerializer(small_spending)
+        serializer_higher = SpendingSerializer(higher_spending)
+        serializer_highest = SpendingSerializer(highest_spending)
+
+        self.assertEqual(res.data[0], serializer_highest.data)
+        self.assertEqual(res.data[1], serializer_higher.data)
+        self.assertEqual(res.data[2], serializer_small.data)
