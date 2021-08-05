@@ -14,13 +14,14 @@
 
 ```json
 {
-  "id": IntegerField,
-  "description": CharField, # Required!
-  "amount": FloatField,     # Required!
-  "date": DateTimeField,    # Optional. (default: current timestamp),
-  "currency": CharField,    # Required!
-  "created": DateTimeField,
-  "last_updated": DateTimeField
+  "id": "IntegerField",
+  "description": "CharField,        Required!",
+  "amount": "IntegerField,          Required!",
+  "date": "DateTimeField,           Optional. (default: current timestamp)",
+  "currency": "CharField,           Required!",
+  "created": "DateTimeField",
+  "last_updated": "DateTimeField",
+  "amount_in_huf": "IntegerField     Not editable"
 }
 ```
 
