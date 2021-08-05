@@ -2,9 +2,25 @@
 
 ## Project work for Polygence
 
+[Overview](#overview)
+
 [Entities (and Models)](#entities-and-models)
 
 [API Documentation](#api-documentation)
+
+## Overview
+
+### Backend:
+
+- Stack: Python, Django, Django REST framework, PostgreSQL database, Heroku
+
+- Deployment: [https://spendings-django.herokuapp.com/api/](https://spendings-django.herokuapp.com/api/)
+
+### Frontend:
+
+- Stack: JS, React (without framework), Webpack, Babel, Styled Components
+
+- Deployment: [https://spendingz.nemethrichard.hu](https://spendingz.nemethrichard.hu)
 
 ## Entities (and Models)
 
@@ -39,15 +55,16 @@
 
 ### Spending
 
-| Method   | Endpoint                                                                                    | Function                     | Status |
-| -------- | ------------------------------------------------------------------------------------------- | ---------------------------- | ------ |
-| `POST`   | [`/api/spendings/`](#post-apispendings)                                                     | Create a spending            | LIVE   |
-| `GET`    | [`/api/spendings/`](#get-apispendings)                                                      | List all spendings           | LIVE   |
-| `GET`    | [`/api/spendings/{spending_id}/`](#get-apispendingsspending_id)                             | Spending Detail view         | LIVE   |
-| `GET`    | [`/api/spendings?currency={ISO_currency_code}`](#get-apispendingscurrencyiso_currency_code) | Filter spendings by currency | LIVE   |
-| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-apispendingsspending_id)                           | Partially update spending    | DEV    |
-| `PUT`    | [`/api/spendings/{spending_id}/`](#put-apispendingsspending_id)                             | Fully update spending        | LIVE   |
-| `DELETE` | [`/api/spendings/{spending_id}/`](#delete-apispendingsspending_id)                          | Delete a spending            | LIVE   |
+| Method   | Endpoint                                                                                    | Function                        | Status |
+| -------- | ------------------------------------------------------------------------------------------- | ------------------------------- | ------ |
+| `POST`   | [`/api/spendings/`](#post-apispendings)                                                     | Create a spending               | LIVE   |
+| `GET`    | [`/api/spendings/`](#get-apispendings)                                                      | List all spendings              | LIVE   |
+| `GET`    | [`/api/spendings/{spending_id}/`](#get-apispendingsspending_id)                             | Spending Detail view            | LIVE   |
+| `GET`    | [`/api/spendings?currency={ISO_currency_code}`](#get-apispendingscurrencyiso_currency_code) | Filter spendings by currency    | LIVE   |
+| `GET`    | [`/api/spendings?ordering={db_field}`](#get-apispendingsorderingdb_field)                   | Order spendings by any db field | LIVE   |
+| `PATCH`  | [`/api/spendings/{spending_id}/`](#patch-apispendingsspending_id)                           | Partially update spending       | DEV    |
+| `PUT`    | [`/api/spendings/{spending_id}/`](#put-apispendingsspending_id)                             | Fully update spending           | LIVE   |
+| `DELETE` | [`/api/spendings/{spending_id}/`](#delete-apispendingsspending_id)                          | Delete a spending               | LIVE   |
 
 ### `POST /api/spendings`
 
@@ -128,7 +145,31 @@ Response when spending does not exists
 
 Request
 
-Query Parameters: **`ISO_currency_code`** (required)
+Query Parameters: **`ISO_currency_code`**
+
+Response
+
+`HTTP_200_OK`
+
+```json
+[
+  {
+    "id": 6,
+    "description": "Mango",
+    "amount": 12.0,
+    "date": "2021-08-02T22:31:32.843408Z",
+    "currency": "ISO_currency_code",
+    "created": "2021-08-02T22:31:33.033740Z",
+    "last_updated": "2021-08-02T22:31:33.033771Z"
+  }
+]
+```
+
+### `GET /api/spendings/?ordering={db_field}`
+
+Request
+
+Query Parameters: **`db_field`**
 
 Response
 
