@@ -78,19 +78,19 @@ class PublicSpendingsApiTest(TestCase):
         self.assertEqual(res.data, serializer.data)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-    def test_update_partial_spending(self):
-        """Test updating a spending with PATCH"""
-        spending = sample_spending()
-        new_description = 'Updated spending'
-        new_currency = 'USD'
+    # def test_update_partial_spending(self):
+    #     """Test updating a spending with PATCH"""
+    #     spending = sample_spending()
+    #     new_description = 'Updated spending'
+    #     new_currency = 'USD'
 
-        payload = {'description': new_description, 'currency': new_currency}
-        url = detail_url(spending.id)
-        self.client.patch(url, payload)
+    #     payload = {'description': new_description, 'currency': new_currency}
+    #     url = detail_url(spending.id)
+    #     self.client.patch(url, payload)
 
-        spending.refresh_from_db()
-        self.assertEqual(spending.description, payload['description'])
-        self.assertEqual(spending.currency, payload['currency'])
+    #     spending.refresh_from_db()
+    #     self.assertEqual(spending.description, payload['description'])
+    #     self.assertEqual(spending.currency, payload['currency'])
 
     def test_update_full_spending(self):
         """Test updating a spending with PUT"""

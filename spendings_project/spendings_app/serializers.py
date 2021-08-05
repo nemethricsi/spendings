@@ -8,7 +8,7 @@ class SpendingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spending
         fields = (
-            'id', 'date','description', 'amount', 'created', 'last_updated', 'currency'
+            'id', 'date','description', 'amount', 'created', 'last_updated', 'currency', 'amount_in_huf',
         )
         read_only_fields = ('id', 'created')
 

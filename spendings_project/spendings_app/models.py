@@ -17,6 +17,7 @@ class Spending(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    amount_in_huf = models.IntegerField(default=0, editable=False)
 
     class Meta:
         ordering = ['-date',]
