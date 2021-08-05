@@ -36,7 +36,7 @@ export default function UpdateForm({ spending }) {
     e.preventDefault();
     const body = {
       description: state.description,
-      amount: state.amount * 100,
+      amount: (state.amount * 100).toFixed(0),
       currency: state.currency,
     };
     fetch(`${config.API_URL}${spending.id}/`, {
