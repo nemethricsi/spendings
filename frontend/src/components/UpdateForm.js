@@ -45,7 +45,7 @@ export default function UpdateForm({ spending }) {
       body: JSON.stringify(body),
     })
       .then(async (res) => {
-        const body = res.json();
+        const body = await res.json();
         return {
           status: res.status,
           body,
@@ -59,11 +59,15 @@ export default function UpdateForm({ spending }) {
             transition: Slide,
           });
           history.push('/');
+        } else {
+          toast.error(JSON.stringify(response.body), {
+            position: 'top-center',
+            autoClose: 2000,
+            transition: Slide,
+          });
         }
       });
   }
-
-  console.log(state.amount);
 
   return (
     <>

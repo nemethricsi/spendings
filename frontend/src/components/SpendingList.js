@@ -150,8 +150,6 @@ const ErrorMessage = styled.h1`
 `;
 
 export default function SpendingList({
-  refresh,
-  toggleRefresh,
   spendings,
   setSpendings,
   currencyFilter,
@@ -184,7 +182,7 @@ export default function SpendingList({
         setError(true);
         setLoading(false);
       });
-  }, [refresh, currencyFilter, ordering]);
+  }, [currencyFilter, ordering]);
 
   function handleDelete(spendingId) {
     fetch(`${config.API_URL}${spendingId}/`, {

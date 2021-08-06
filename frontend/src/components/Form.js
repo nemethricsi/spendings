@@ -12,7 +12,7 @@ const FormStyles = styled.form`
   margin-bottom: 4rem;
 `;
 
-export default function Form({ setSpendings, spendings, toggleRefresh }) {
+export default function Form({ setSpendings, spendings }) {
   const [state, setState] = useState({
     description: '',
     amount: 0,
@@ -48,7 +48,6 @@ export default function Form({ setSpendings, spendings, toggleRefresh }) {
       .then((response) => {
         console.log(response);
         if (response.status === 201) {
-          // toggleRefresh();
           const newItem = response.body;
           setSpendings([newItem, ...spendings]);
           setState({
