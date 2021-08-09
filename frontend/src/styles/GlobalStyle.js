@@ -23,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     --font-family:'Karla', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
   }
 
+  html {
+    overflow-y: scroll;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-black);
