@@ -5,6 +5,7 @@ import Header from './Header';
 export const MainContainer = styled.main`
   max-width: 800px;
   margin: 1rem auto;
+  position: relative;
 `;
 
 const Layout = ({ children }) => (

@@ -7,6 +7,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body, #app {
+    height: 100%;
+  }
+
+  main {
+    min-height: 100%;
+  }
+
   :root {
     --color-background: #F2F1F6;
     --color-white: #fff;

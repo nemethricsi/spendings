@@ -15,7 +15,7 @@ const LdsDualRing = styled.div`
     border-radius: 50%;
     border: 6px solid var(--color-blue);
     border-color: var(--color-blue) transparent var(--color-blue) transparent;
-    animation: lds-dual-ring 0.9s linear infinite;
+    animation: lds-dual-ring 1.2s linear infinite;
   }
 
   @keyframes lds-dual-ring {
@@ -29,7 +29,7 @@ const LdsDualRing = styled.div`
 `;
 
 const LoaderStyles = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
